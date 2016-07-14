@@ -18,7 +18,11 @@
                 <td>{{ $contact->mobile_number }}</td>
                 <td><a href="{{ route('contacts.show',$contact->id) }}">Show</a></td>
                 <td><a href="{{ route('contacts.edit',$contact->id) }}">Edit</a></td>
-                <td><a href="#">Delete</a></td>
+                <td>
+                    {!! Form::open(['method' => 'DELETE', 'route'=>['contacts.destroy', $contact->id]]) !!}
+                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::close() !!}
+                </td>
             </tr>
             @endforeach
         </tbody>

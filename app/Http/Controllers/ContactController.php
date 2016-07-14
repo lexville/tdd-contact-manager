@@ -98,6 +98,8 @@ class ContactController extends Controller
     {
         $contact = Contact::findOrFail($id);
         $contact->update($request->all());
+
+        return redirect('/contacts');
     }
 
     /**
@@ -108,6 +110,8 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Contact::findOrFail($id)->delete();
+
+        return redirect()->back();
     }
 }
