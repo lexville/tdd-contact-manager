@@ -34,7 +34,7 @@ class UserCanDeleteContactTest extends TestCase
 
         $this->actingAs($user)
             ->visit('/contacts')
-            ->press('Delete');
+            ->click('Delete');
 
         $contacts = Contact::personalize()->get();
         $this->assertEquals(count($contacts), 1);
