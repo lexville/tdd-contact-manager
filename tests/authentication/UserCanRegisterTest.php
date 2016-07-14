@@ -27,8 +27,8 @@ class UserCanRegisterTest extends TestCase
 
         // Create another new User
         factory(App\User::class)->create([
-            'name'     => 'userOne',
-            'email'    => 'userOne@email.com',
+            'name'     => 'userTwo',
+            'email'    => 'userTwo@email.com',
             'password' => bcrypt('password'),
         ]);
 
