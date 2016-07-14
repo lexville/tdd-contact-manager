@@ -31,6 +31,6 @@ class UserCanAddContactTest extends TestCase
     public function testOnlyLoggedinUsersCanCreateContact()
     {
         $this->visit('/contacts/create')
-            ->$this->assertRedirectedToRoute('login');
+            ->assertRedirectedToRoute('login');
     }
 }
