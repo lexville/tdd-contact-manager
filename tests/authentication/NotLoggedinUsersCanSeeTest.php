@@ -13,7 +13,6 @@ class NotLoggedinUsersCanSeeTest extends TestCase
      */
     public function testNotLoggedInUserCanSee()
     {
-
         $this->visit('/')
             ->see('Login')
             ->see('Register');
