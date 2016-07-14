@@ -28,7 +28,6 @@ class UserCanEditContactTest extends TestCase
             'mobile_number' => '12345678',
             'user_id'       => $user->id
         ]);
-
         $user->contacts()->save($anotherContact);
 
         $this->actingAs($user)
@@ -43,5 +42,6 @@ class UserCanEditContactTest extends TestCase
             'theNewlyEditedUser',
             Contact::findOrFail($anotherContact->id)['name']
         );
+        // echo ('/contacts/' . $anotherContact->id . '/edit');
     }
 }

@@ -16,7 +16,7 @@
                 <td>{{ $contact->name }}</td>
                 <td>{{ $contact->email }}</td>
                 <td>{{ $contact->mobile_number }}</td>
-                <td><a href="#">Edit</a></td>
+                <td><a href="{{ route('contacts.edit',$contact->id) }}">Edit</a></td>
                 <td><a href="#">Delete</a></td>
             </tr>
             @endforeach
