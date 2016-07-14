@@ -14,7 +14,7 @@ class UserCanSeeCreatedContactTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $contacts = factory(Contact::class, 5)->create();
+        $contacts = factory(Contact::class, 5)->make();
 
         $user->contacts()->saveMany($contacts);
 
@@ -27,7 +27,7 @@ class UserCanSeeCreatedContactTest extends TestCase
     {
         $userOne = factory(User::class)->create();
 
-        $userOneContacts = factory(Contact::class, 5)->create();
+        $userOneContacts = factory(Contact::class, 5)->make();
 
         $userOne->contacts()->saveMany($userOneContacts);
 
@@ -37,7 +37,7 @@ class UserCanSeeCreatedContactTest extends TestCase
 
         $userTwo = factory(User::class)->create();
 
-        $userTwoContacts = factory(Contact::class, 30)->create();
+        $userTwoContacts = factory(Contact::class, 30)->make();
 
         $userTwo->contacts()->saveMany($userTwoContacts);
 

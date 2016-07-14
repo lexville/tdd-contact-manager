@@ -19,7 +19,7 @@ class UserCanAddContactTest extends TestCase
         $user = factory(App\User::class)->create();
 
         // Create contacts
-        $contacts = factory(App\Contact::class, 5)->create();
+        $contacts = factory(App\Contact::class, 5)->make();
 
         $user->contacts()->saveMany($contacts);
 
