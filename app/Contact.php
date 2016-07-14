@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
@@ -23,5 +24,12 @@ class Contact extends Model
     public function users()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopePersonalize()
+    {
+        if (Auth::check()) {
+            return self::where('user_id', Auth::user()->id);
+        }
     }
 }
