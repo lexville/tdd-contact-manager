@@ -23,4 +23,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Eloquest relationship linking users to contacts
+     *
+     *  @return Eloquesnt relationship
+     */
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
+    }
 }
