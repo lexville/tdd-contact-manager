@@ -33,15 +33,16 @@ class UserCanEditContactTest extends TestCase
         $this->actingAs($user)
             ->call(
                 'PUT',
-                '/contacts/' . $anotherContact->id . '/edit',
+                '/contacts/' . $anotherContact->id,
                 [
-                    'name' => 'theNewlyEditedUser'
+                    'name' => 'theNewlyEditedUser',
+                    'email' =>  $anotherContact->email,
+                    'mobile_number' =>  $anotherContact->mobile_number,
                 ]
             );
         $this->assertEquals(
             'theNewlyEditedUser',
             Contact::findOrFail($anotherContact->id)['name']
         );
-        // echo ('/contacts/' . $anotherContact->id . '/edit');
     }
 }
