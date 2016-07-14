@@ -33,4 +33,14 @@ class UserCanAddContactTest extends TestCase
         $this->visit('/contacts/create')
             ->seePageIs('/login');
     }
+
+    public function testLoggedinUsersCanCreateContact()
+    {
+        // create user
+        $user = factory(App\User::class, 1)->create();
+
+        $this->actingAs($user)
+            ->visit('/contacts/create')
+            ->seePageIs('/contacts/create');
+    }
 }
