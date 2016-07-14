@@ -27,4 +27,10 @@ class UserCanAddContactTest extends TestCase
 
         $this->assertEquals(count($allContacts), 5);
     }
+
+    public function testOnlyLoggedinUsersCanCreateContact()
+    {
+        $this->visit('/contacts/create')
+            ->$this->assertRedirectedToRoute('login');
+    }
 }
