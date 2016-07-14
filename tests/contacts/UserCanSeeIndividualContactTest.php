@@ -23,12 +23,14 @@ class UserCanSeeIndividualContactTest extends TestCase
 
         $user->contacts()->save($contactOne);
 
-        $contactOne = factory(Contact::class)->make([
+        $contactTwo = factory(Contact::class)->make([
             'name'          => 'userTwo',
             'email'         => 'userTwo@email.com',
             'mobile_number' => '907596175700',
             'user_id'       => $user->id,
         ]);
+
+        $user->contacts()->save($contactTwo);
 
         $this->actingAs($user)
             ->call(
@@ -46,9 +48,7 @@ class UserCanSeeIndividualContactTest extends TestCase
 
         $this->actingAs($user)
             ->visit('/contacts/1')
-            ->see('userOne', 'name')
-            ->visit('/contacts/2')
-            ->see('userTwo', 'name');
+            ->see('userOne@email.com');
     }
 
     public function testOnlyLoggedinUsersCanSeeIndividualContact()
