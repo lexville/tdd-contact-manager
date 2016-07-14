@@ -50,4 +50,10 @@ class UserCanSeeIndividualContactTest extends TestCase
             ->visit('/contacts/2')
             ->see('userTwo', 'name');
     }
+
+    public function testOnlyLoggedinUsersCanSeeIndividualContact()
+    {
+        $this->visit('/contacts/1')
+            ->seePageIs('/login');
+    }
 }
