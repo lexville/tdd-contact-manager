@@ -26,7 +26,7 @@ class Contact extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function scopePersonalize()
+    public static function scopePersonalize()
     {
         if (Auth::check()) {
             return self::where('user_id', Auth::user()->id);

@@ -9,7 +9,7 @@ use App\Contact;
 class UserCanSeeCreatedContactTest extends TestCase
 {
     use DatabaseMigrations;
-    
+
     public function testUserCanSeeContacts()
     {
         $user = factory(User::class)->create();
@@ -21,5 +21,28 @@ class UserCanSeeCreatedContactTest extends TestCase
         $userContacts = Contact::personalize()->get();
 
         $this->assertEquals(count($userContacts), 5);
+    }
+
+    public function testUserCanOnlySeeTheirContacts()
+    {
+        $userOne = factory(User::class)->create();
+
+        $userOneContacts = factory(Contact::class, 5)->create();
+
+        $userOne->contacts()->saveMany($userOneContacts);
+
+        $userOneContacts = Contact::where('user_id', $userOne->id)->get();
+
+        $this->assertEquals(count($userOneContacts), 5);
+
+        $userTwo = factory(User::class)->create();
+
+        $userTwoContacts = factory(Contact::class, 30)->create();
+
+        $userTwo->contacts()->saveMany($userTwoContacts);
+
+        $userTwoContacts = Contact::where('user_id', $userTwo->id)->get();
+
+        $this->assertEquals(count($userTwoContacts), 30);
     }
 }
